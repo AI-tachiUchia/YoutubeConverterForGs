@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARIS | Audio Extractor</title>
+    <!-- Fonts matching caris.me -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="font-heading">CARIS</h1>
+            <p>AUDIO EXTRACTOR</p>
+        </header>
+        
+        <main>
+            <div class="glass-panel">
+                <form id="extract-form">
+                    <div class="input-group">
+                        <input type="url" id="youtube-url" placeholder="PASTE YOUTUBE URL //" required autocomplete="off">
+                    </div>
+                    <button type="submit" id="extract-btn">
+                        <span class="btn-text">EXTRACT AUDIO</span>
+                        <div class="spinner" style="display: none;"></div>
+                    </button>
+                    <p id="status-message"></p>
+                </form>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 CARIS.</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

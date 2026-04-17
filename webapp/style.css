@@ -1,0 +1,199 @@
+/* Color Palette and Variables */
+:root {
+    --bg-color: #050505;
+    --text-color: #ffffff;
+    --accent-color: #444;
+    --glass-bg: rgba(25, 25, 25, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --btn-hover: #ffffff;
+    --btn-hover-text: #050505;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow-x: hidden;
+}
+
+.font-heading {
+    font-family: 'Syncopate', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+header {
+    text-align: center;
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-color);
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1px;
+    padding: 3rem 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.glass-panel:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+#extract-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+}
+
+input[type="url"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+    color: var(--text-color);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="url"]:focus {
+    border-bottom-color: var(--text-color);
+}
+
+input::placeholder {
+    color: #666;
+    letter-spacing: 0.1em;
+}
+
+button {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 1.2rem;
+    font-family: 'Syncopate', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button:hover {
+    background: var(--btn-hover);
+    color: var(--btn-hover-text);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* Spinner Animation */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid var(--text-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+button:hover .spinner {
+    border-top: 2px solid var(--btn-hover-text);
+    border: 2px solid rgba(0,0,0,0.3);
+}
+
+#status-message {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    min-height: 1.2rem;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.success-text { color: #4CAF50 !important; }
+.error-text { color: #F44336 !important; }
+
+footer {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: #444;
+    animation: fadeIn 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 2.5rem; }
+    .glass-panel { padding: 2rem 1.5rem; }
+}
