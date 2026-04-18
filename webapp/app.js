@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // In production (Vercel), you would set this to your Render URL.
     const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
         ? 'http://127.0.0.1:8000' 
-        : 'https://ytconvforrealgs.onrender.com'; 
+        : 'https://suburbicarian-unwarrantable-claud.ngrok-free.dev'; 
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
