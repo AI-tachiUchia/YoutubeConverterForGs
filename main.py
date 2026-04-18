@@ -50,11 +50,6 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'extractor_args': {
-            'youtube': {
-                'player_client': ['tv', 'mweb']
-            }
-        },
         'quiet': False,
         'no_warnings': True,
     }
