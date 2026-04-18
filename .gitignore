@@ -5,3 +5,7 @@ __pycache__/
 .idea/
 .vscode/
 tmp/
+cookies.txt
+logs/
+ngrok
+ngrok.zip

@@ -38,9 +38,13 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
     # Save temporarily in /tmp
     output_template = f"/tmp/{unique_id}_%(title)s.%(ext)s"
 
+    # Resolve cookies path relative to this script's directory
+    cookies_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cookies.txt')
+
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
+        'cookiefile': cookies_path,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
