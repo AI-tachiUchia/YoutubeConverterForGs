@@ -46,7 +46,12 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'quiet': False, # Keep some output for debugging if something goes wrong in the cloud logs
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'ios']
+            }
+        },
+        'quiet': False,
         'no_warnings': True,
     }
 
