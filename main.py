@@ -48,7 +48,7 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
         }],
         'extractor_args': {
             'youtube': {
-                'player_client': ['android', 'ios']
+                'player_client': ['tv', 'mweb']
             }
         },
         'quiet': False,
