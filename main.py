@@ -41,11 +41,12 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
-        # Use iOS + Safari web clients: they don't require login/PO tokens and
-        # are the most resilient to YouTube's anti-bot checks as of 2026.
+        # Try clients in this order; yt-dlp will fall through on failure.
+        # tv + mweb are currently the most reliable anonymous clients and
+        # don't require login or PO tokens.
         'extractor_args': {
             'youtube': {
-                'player_client': ['ios', 'web_safari'],
+                'player_client': ['tv', 'mweb', 'web_safari'],
             }
         },
         'postprocessors': [{
