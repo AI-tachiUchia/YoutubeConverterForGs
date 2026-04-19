@@ -38,13 +38,16 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
     # Save temporarily in /tmp
     output_template = f"/tmp/{unique_id}_%(title)s.%(ext)s"
 
-    # Resolve cookies path relative to this script's directory
-    cookies_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cookies.txt')
-
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': output_template,
-        'cookiefile': cookies_path,
+        # Use iOS + Safari web clients: they don't require login/PO tokens and
+        # are the most resilient to YouTube's anti-bot checks as of 2026.
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['ios', 'web_safari'],
+            }
+        },
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -53,6 +56,13 @@ async def convert_video(request: DownloadRequest, background_tasks: BackgroundTa
         'quiet': False,
         'no_warnings': True,
     }
+
+    # Cookies are optional. If a cookies.txt exists next to main.py, use it.
+    # Leaving this out is safer — personal account cookies can get your
+    # account flagged if yt-dlp misbehaves.
+    cookies_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cookies.txt')
+    if os.path.exists(cookies_path):
+        ydl_opts['cookiefile'] = cookies_path
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
